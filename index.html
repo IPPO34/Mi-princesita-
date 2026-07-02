@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>💗 Feliz 1 año y 2 meses mi amor 💗</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:black;
+    overflow:hidden;
+    width:100vw;
+    height:100vh;
+    font-family:Arial, sans-serif;
+}
+
+#rotateMessage{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    z-index:999;
+}
+
+#rotateMessage h1{
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+#rotateMessage p{
+    font-size:1.2rem;
+}
+
+#container{
+    width:100vw;
+    height:100vh;
+    display:none;
+    background:black;
+}
+
+video{
+    width:100vw;
+    height:100vh;
+    object-fit:contain;
+    background:black;
+}
+
+#overlay{
+    position:absolute;
+    top:20px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:2rem;
+    text-shadow:0 0 10px black;
+    z-index:10;
+}
+
+#playButton{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    padding:20px 35px;
+    font-size:1.2rem;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    z-index:20;
+}
+</style>
+</head>
+
+<body>
+
+<div id="rotateMessage">
+    <h1>💗 Gira tu teléfono mi amorcito 💗</h1>
+
+</div>
+
+<div id="container">
+
+   
+    <button id="playButton">
+        💗 Toca aquí para comenzar mi amor 💗
+    </button>
+
+    <video id="video" playsinline>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+</div>
+
+<script>
+
+const rotateMessage = document.getElementById("rotateMessage");
+const container = document.getElementById("container");
+const video = document.getElementById("video");
+const playButton = document.getElementById("playButton");
+
+function checkOrientation(){
+
+    if(window.innerHeight > window.innerWidth){
+
+        rotateMessage.style.display = "flex";
+        container.style.display = "none";
+
+    }else{
+
+        rotateMessage.style.display = "none";
+        container.style.display = "block";
+
+    }
+}
+
+checkOrientation();
+
+window.addEventListener("resize", checkOrientation);
+
+playButton.addEventListener("click", async ()=>{
+
+    try{
+
+        if(document.documentElement.requestFullscreen){
+            await document.documentElement.requestFullscreen();
+        }
+
+        video.muted = false;
+
+        await video.play();
+
+        playButton.style.display = "none";
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
